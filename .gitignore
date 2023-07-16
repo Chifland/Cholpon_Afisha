@@ -1,5 +1,6 @@
 venv
 .env
+
 .idea
 .vscode
 __pycache__/
@@ -7,5 +8,5 @@ __pycache__/
 *.so
 db.sqlite3
 afisha.sqlite3
-static
-media
+
+
