@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view  # [GET, POST, PUT, DELETE]
 from rest_framework.response import Response  # Return Result
-from movie_app.serializers import DirectorSerializer, MovieSerializer, ReviewSerializer
+from movie_app.serializers import DirectorSerializer, MovieSerializer, ReviewSerializer, MovieReviewSerializer
 from movie_app.models import Director, Movie, Review
 
 
@@ -60,6 +60,13 @@ def review_detail_api_view(request, review_id):
         return Response(data={'message': 'Review object does ot exists!'},
                         status=404)
     data = ReviewSerializer(instance=review, many=False).data
+    return Response(data=data)
+
+
+@api_view(['GET'])
+def movie_with_rating(request):
+    movie = Movie.objects.all()
+    data = MovieReviewSerializer(instance=movie, many=True).data
     return Response(data=data)
 
 
