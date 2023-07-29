@@ -49,9 +49,7 @@ class Review(models.Model):
 
     @property
     def movie_list(self) -> list:
-        return self.mo
-
-        vie.all()
+        return self.movie.all()
 
     def __str__(self):
         return self.text
