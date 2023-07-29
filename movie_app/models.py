@@ -9,7 +9,6 @@ class Director(models.Model):
     def movie_count(self):
         return self.directors_movies.count()
 
-
     def __str__(self):
         return self.name
 
@@ -53,4 +52,3 @@ class Review(models.Model):
 
     def __str__(self):
         return self.text
-

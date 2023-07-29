@@ -41,7 +41,7 @@ def director_detail_api_view(request, director_id):
         return Response(status=204)
 
 
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 def movie_list_api_view(request):
     if request.method == "GET":
         movies = Movie.objects.all()
@@ -58,7 +58,8 @@ def movie_list_api_view(request):
         )
         return Response(data=MovieSerializer(movies).data)
 
-@api_view(['GET','PUT','DELETE'])
+
+@api_view(['GET', 'PUT', 'DELETE'])
 def movie_detail_api_view(request, movie_id):
     try:
         movie = Movie.objects.get(id=movie_id)
@@ -78,7 +79,6 @@ def movie_detail_api_view(request, movie_id):
     else:
         movie.delete()
         return Response(status=204)
-
 
 
 @api_view(['GET', 'POST'])
@@ -110,8 +110,7 @@ def review_detail_api_view(request, review_id):
     elif request.method == 'PUT':
         review.text = request.data.get('text')
         review.stars = request.data.get('stars')
-        review.movie_id = request.data.get('movie_id')
-
+        review.movie = request.data.get('movie')
         return Response(data=ReviewSerializer(review).data)
     else:
         review.delete()
@@ -123,5 +122,3 @@ def movie_with_rating(request):
     movie = Movie.objects.all()
     data = MovieReviewSerializer(instance=movie, many=True).data
     return Response(data=data)
-
-
